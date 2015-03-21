@@ -111,6 +111,7 @@ const LUA_REG_TYPE proxima_mc_map[] =
     { LSTRKEY("right"), LFUNCVAL( proxima_motors_right ) },
     { LSTRKEY("left"), LFUNCVAL( proxima_motors_left ) },
     { LSTRKEY("stop"), LFUNCVAL( proxima_motors_stop ) },
+    { LSTRKEY("set"), LFUNCVAL( proxima_motors_set ) },
     { LNILKEY, LNILVAL },
 };
 
