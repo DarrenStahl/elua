@@ -95,3 +95,21 @@ int proxima_motors_stop( lua_State* L )
     return motor_impl(127, 127);
 }
 
+int proxima_motors_status( lua_State* L )
+{
+    u8 addr = MC1_ADDR;
+    u8 data;
+
+    platform_i2c_send_address(1, addr, PLATFORM_I2C_DIRECTION_TRANSMITTER);
+    platform_i2c_send_start(1);
+    platform_i2c_send_byte(1, 0x01);
+    platform_i2c_send_stop(1);
+
+    platform_i2c_send_address(1, addr, PLATFORM_I2C_DIRECTION_RECEIVER);
+    data = platform_i2c_recv_byte(1, 1);
+    platform_i2c_send_stop(1);
+
+    lua_pushinteger( L, data );
+
+    return 1;
+}
